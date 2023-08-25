@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alpine</title>
+</head>
+<body>
+    <!-- the x-data used to add  the alpine js state to any element and the data attatched to an alpine js object can be accessed by the child node-->
+    <div x-data="{name:'uba'}">
+        <p x-text="name"></p>
+    </div>
+   
+    <!--- htmx makes use of scoping. variable scopes in js ie. global and local-->
+    <div x-data ="{name:'joe'}">
+        <div x-data="{object:'human'}">
+
+            <!-- a child node access the data in the  parent node. therefore a change on the parent node data can affect how the child reacts-->
+          <p x-text ="name"></p>
+          <p x-text="object"></p>
+        </div>
+
+    </div>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
+</body>
+</html>
