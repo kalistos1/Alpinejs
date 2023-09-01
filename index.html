@@ -22,6 +22,113 @@
 
     </div>
 
+    <!-- adding methods to x-data. Note only normal methods works and not arrow functions-->
+    <div x-data = "{
+        name:'ubajoe', 
+        change(){
+            this.name ='john doe'
+         }}">
+         
+         <!-- span tag to this play data associated to name. Note : the @click is how  event listeners are attatche to alpine js-->
+         <span x-text ="name" @click ="change()"> click to change</span>
+         <button x-data @click="alert('hello world')"> click me </button>
+    </div>
+
+
+     <!-- reusable data -->
+     <div x-data ="dropdown">
+        <button @click ="toggle()"> dropdown</button> 
+        <div x-show ="open">  content...</div>
+     </div>
+     <!-- reusable data -->
+
+     <!-- dataless component : this is  acomponent that has been initialize but it has no data. its used when you might
+    want an alpine js component just for event listening and no data. -->
+     <div x-data @click="alert('hello world')">
+            click me
+     </div>
+     <!-- dataa less component ends-->
+
+
+    <!-- alpine js stores: a store is a single source of data which holds all the data required for your project-->
+     <div x-data x-text ='$store.user.username'>
+
+     </div>
+    <!-- alpine js stores ends-->
+
+    <!-- initializing alpine js using init: x-init is used to convert an element into an alpine js componenet 
+        and the component is initialized once alpine js innitializes the component -->
+    <div x-init ="console.log('hello world')">
+      
+    </div>
+ <!-- x-init can be placed inside another alpine js component-->
+    <div x-data ="{
+        init(){
+            console.log('i have been initilized')
+        }
+    }">
+    </div>
+    <!--it can also be used to dynamically populate that on initialization-->
+
+    <div x-data ="{
+        todo:{}
+    }">
+
+    <div x-init="await((await fetch('https://...')).json())">
+       <p x-text ="todo.title"></p>
+    </div>
+
+    <!--init ends here -->
+
+
+    <!-- scoping in alpine js-->
+    <!-- soping ends here -->
+
+
+    <!-- getters and setters in -->
+
+    <div x-data = "{
+        open: false,
+
+        get isOpen(){
+            return this.open
+        },
+
+        set isOpen(open){
+            return this.open = open
+        },
+
+        toggle(){
+            this.isOpen =!this.isOpen
+        }
+    }">
+     
+    <button  @click="toggle"> click me to open</button>
+      <div x-show = "open">hello i was hidden</div>
+    </div>
+    <!-- getters and setter end-->
+
+
+
+    <!--  using x-show: animations can be used to  improve the x-show  directive in alpinejs-->
+
+    <div x-data ="{
+        open: false,
+        toggle(){
+            this.open = !this.open
+        }
+    }">
+      <button @click="toggle"> click me again for animations</button>
+      <p x-show="open" 
+         x-transition.enter.duration.200ms
+         x-transition.leave.duration.2000ms
+      > i am animated</p>
+    </div>
+     
+    </div>
+
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
+    <script src="js/alpine.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
