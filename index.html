@@ -109,9 +109,7 @@
     <!-- getters and setter end-->
 
 
-
     <!--  using x-show: animations can be used to  improve the x-show  directive in alpinejs-->
-
     <div x-data ="{
         open: false,
         toggle(){
@@ -125,6 +123,21 @@
       > i am animated</p>
     </div>
      
+
+      <!-- using x-if  is  used just lije=ke the x show but the diference is that the ttransition directive is not used in it.
+       secondly it is used to remove or add nodes to the dom tree but it can only be used with the html <template></twmplate tag-->
+    
+    <!-- using x-for: afor is also used with the html <template> tag and is used to loop through items-->
+
+    <div x-data ="{
+        info :[{id:1,post:'hello world'}, {id:2, post:'this is good'},{id:3, post:'wadup'}]
+    }">
+    <template x-for ="post in info" :key="post.id">
+        <li x-text="post.post"></li>
+    </template>
+
+    </div>
+
     </div>
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
